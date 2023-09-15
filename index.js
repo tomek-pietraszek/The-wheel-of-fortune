@@ -27,10 +27,12 @@ let alreadySpinned = false
 let indexCounter = 0;
 let degrees;
 let totalScore = 0;
+let gameActive = true
 
 
 let rotationCounter = 0;
 spinWheel.addEventListener("click", ()=>{
+    gameActive = true
 
 
     degrees = randomNumber();
@@ -47,7 +49,7 @@ spinWheel.addEventListener("click", ()=>{
         
 
         
-        console.log(`you won ${findTheValue(degrees)}`)
+        console.log(`Congratulations! You won ${findTheValue(degrees)}`)
     
 })
 
@@ -84,8 +86,8 @@ function findTheValue(deg){
 
 wheel.addEventListener("transitionend", () => {
 
-    
-    alert(`you won ${resultsArr[index]}`);
+    gameActive = false
+    alert(`Congratulations! you won ${resultsArr[index]}$`);
     
     // Display the result message
   
@@ -93,10 +95,21 @@ wheel.addEventListener("transitionend", () => {
 
 
   endGame.addEventListener("click", ()=>{
-    spinWheel.style.display = "none"
-    endGame.style.display = "none"
-    startGame.style.display = "block"
-    alert(`Your total score is: ${totalScore}$`)
+    if(rotationCounter === 0){
+        alert("try to spin the wheel at leas once")
+    
+    }
+    else if (!gameActive) {
+        spinWheel.style.display = "none"
+        endGame.style.display = "none"
+        startGame.style.display = "block"
+    
+        alert(`You go to home today with ${totalScore}$ :)`)
+    }
+    else {
+        alert("can't end the game while the wheel is running")
+    }
+    
   })
 
 
