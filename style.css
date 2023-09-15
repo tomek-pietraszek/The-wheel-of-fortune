@@ -39,7 +39,7 @@ body{
 
 }
 
-button{
+button {
     margin-top: -200px;
     font-size: 2rem;
     padding: 10px 20px;
@@ -52,6 +52,22 @@ button:active {
    
    
 }
+
+.spin-wheel {
+    
+    display: none;
+
+}
+
+.end-game {
+    position: absolute;
+    right: 840px;
+    bottom: 40px;
+    display: none;
+    background-color: aquamarine;
+}
+
+
 
 
 .arrow-up {
