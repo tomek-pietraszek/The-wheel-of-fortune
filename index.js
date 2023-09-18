@@ -17,13 +17,13 @@ const resultsArr = [ 60, 500, 30, 50, 60, 55, 40, 90, 25, 30, 90, 300, 50, 40, 2
 
 function randomNumber() {
     let random;
-   // Generate a random multiple of 18 (360 deg / 20 fields = 18deg)
-        random = Math.floor(Math.random() * 90) * 18;
+   // Generate a random multiple of 18 (360 deg / 20 fields = 18deg) between 360 and 2700
+        random = 900 + Math.floor(Math.random() * 160) * 18;
     
     
     return random;
 }
-let alreadySpinned = false
+let isSpinning = false
 let indexCounter = 0;
 let degrees;
 let totalScore = 0;
@@ -33,23 +33,31 @@ let gameActive = true
 let rotationCounter = 0;
 spinWheel.addEventListener("click", ()=>{
     gameActive = true
-
+    
 
     degrees = randomNumber();
     let seconds = degrees / 100
    
     console.log(degrees, seconds)
+    
+    wheelWraper.style.transform = `rotate(-${degrees + rotationCounter}deg) `;
+    wheelWraper.style.transition = `${seconds}s ease-in-out`
+    wheel.style.transform = `rotate(${degrees + rotationCounter}deg)`;
+    wheel.style.transition = `${seconds}s ease-in-out`
+    rotationCounter += degrees;
+    
+    
+    
+
    
+ 
         
-        wheelWraper.style.transform = `rotate(-${degrees + rotationCounter}deg) `;
-        wheelWraper.style.transition = `${seconds}s ease-in-out`
-        wheel.style.transform = `rotate(${degrees + rotationCounter}deg)`;
-        wheel.style.transition = `${seconds}s ease-in-out`
-        rotationCounter += degrees;
+       
         
 
         
-        console.log(`Congratulations! You won ${findTheValue(degrees)}`)
+        
+        console.log(`Congratulations! You won ${findTheValue(degrees)} $`)
     
 })
 
@@ -85,7 +93,7 @@ function findTheValue(deg){
 }
 
 wheel.addEventListener("transitionend", () => {
-
+    
     gameActive = false
     alert(`Congratulations! you won ${resultsArr[index]}$`);
     
@@ -96,7 +104,7 @@ wheel.addEventListener("transitionend", () => {
 
   endGame.addEventListener("click", ()=>{
     if(rotationCounter === 0){
-        alert("try to spin the wheel at leas once")
+        alert("Try to spin the wheel at least once!")
     
     }
     else if (!gameActive) {
@@ -104,10 +112,10 @@ wheel.addEventListener("transitionend", () => {
         endGame.style.display = "none"
         startGame.style.display = "block"
     
-        alert(`You go to home today with ${totalScore}$ :)`)
+        alert(`Good Job! You take home today ${totalScore} $ :)`)
     }
     else {
-        alert("can't end the game while the wheel is running")
+        alert("You can't end the game while the wheel is running!")
     }
     
   })
