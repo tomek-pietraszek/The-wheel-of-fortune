@@ -6,9 +6,9 @@ const endGame = document.querySelector(".end-game")
 
 
 startGame.addEventListener("click", ()=> {
-    startGame.style.display = "none"
-    spinWheel.style.display = "block"
-    endGame.style.display = "block"
+    startGame.classList.toggle("d-none");
+    spinWheel.classList.toggle("d-none");
+    endGame.classList.toggle("d-none");
 })
 
 
@@ -23,30 +23,44 @@ function randomNumber() {
     
     return random;
 }
-let isSpinning = false
+isSpinning = false
 let indexCounter = 0;
 let degrees;
 let totalScore = 0;
 let gameActive = true
+let clickCounter= 0
 
 
 let rotationCounter = 0;
 spinWheel.addEventListener("click", ()=>{
     gameActive = true
     
+    
 
     degrees = randomNumber();
-    let seconds = degrees / 100
+    let seconds = degrees / 150
+   
+    
+    
+    if(clickCounter === 0){
+      wheelWraper.style.transform = `rotate(-${degrees + rotationCounter}deg) `;
+      wheelWraper.style.transition = `${seconds}s ease-in-out`
+      wheel.style.transform = `rotate(${degrees + rotationCounter}deg)`;
+      wheel.style.transition = `${seconds}s ease-in-out`
+      rotationCounter += degrees;
+      clickCounter++
+    }
+    else if (clickCounter > 0) {
+      alert("Hey! Be patient! Try again once the wheel has stopped")
+    }
    
     console.log(degrees, seconds)
+ 
     
-    wheelWraper.style.transform = `rotate(-${degrees + rotationCounter}deg) `;
-    wheelWraper.style.transition = `${seconds}s ease-in-out`
-    wheel.style.transform = `rotate(${degrees + rotationCounter}deg)`;
-    wheel.style.transition = `${seconds}s ease-in-out`
-    rotationCounter += degrees;
+   
     
     
+    isSpinning = true
     
 
    
@@ -80,7 +94,7 @@ function findTheValue(deg){
         index = (indexCounter % 20) 
         console.log("test")
       }
-      else if (indexCounter > 19 ) {
+      else if (indexCounter > 19) {
         index = indexCounter - 20
       }
      
@@ -95,22 +109,24 @@ function findTheValue(deg){
 wheel.addEventListener("transitionend", () => {
     
     gameActive = false
+    
     alert(`Congratulations! you won ${resultsArr[index]}$`);
     
     // Display the result message
-  
+    
   });
 
 
   endGame.addEventListener("click", ()=>{
+    
     if(rotationCounter === 0){
         alert("Try to spin the wheel at least once!")
     
     }
     else if (!gameActive) {
-        spinWheel.style.display = "none"
-        endGame.style.display = "none"
-        startGame.style.display = "block"
+        spinWheel.classList.toggle("d-none")
+        endGame.classList.toggle("d-none")
+        startGame.classList.toggle("d-none")
     
         alert(`Good Job! You take home today ${totalScore} $ :)`)
     }
