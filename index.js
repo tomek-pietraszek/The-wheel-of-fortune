@@ -27,13 +27,13 @@ isSpinning = false
 let indexCounter = 0;
 let degrees;
 let totalScore = 0;
-let gameActive = true
+
 let clickCounter= 0
 
 
 let rotationCounter = 0;
 spinWheel.addEventListener("click", ()=>{
-    gameActive = true
+    
     
     
 
@@ -42,26 +42,29 @@ spinWheel.addEventListener("click", ()=>{
    
     
     
-    if(clickCounter === 0){
+    if(!isSpinning){
+      isSpinning = true
       wheelWraper.style.transform = `rotate(-${degrees + rotationCounter}deg) `;
       wheelWraper.style.transition = `${seconds}s ease-in-out`
       wheel.style.transform = `rotate(${degrees + rotationCounter}deg)`;
       wheel.style.transition = `${seconds}s ease-in-out`
       rotationCounter += degrees;
-      clickCounter++
+      //debugging
+      console.log(degrees, seconds)
+      console.log(`Congratulations! You won ${findTheValue(degrees)} $`)
+      
     }
-    else if (clickCounter > 0) {
+    else if (isSpinning) {
       alert("Hey! Be patient! Try again once the wheel has stopped")
     }
    
-    console.log(degrees, seconds)
+    
  
     
    
     
     
-    isSpinning = true
-    
+
 
    
  
@@ -71,7 +74,7 @@ spinWheel.addEventListener("click", ()=>{
 
         
         
-        console.log(`Congratulations! You won ${findTheValue(degrees)} $`)
+        
     
 })
 
@@ -108,27 +111,30 @@ function findTheValue(deg){
 
 wheel.addEventListener("transitionend", () => {
     
-    gameActive = false
+    
+    isSpinning = false
     
     alert(`Congratulations! you won ${resultsArr[index]}$`);
     
     // Display the result message
-    
+    // rotationCounter = 0
   });
 
 
   endGame.addEventListener("click", ()=>{
     
-    if(rotationCounter === 0){
+    if(rotationCounter === 0 || totalScore === 0){
         alert("Try to spin the wheel at least once!")
     
     }
-    else if (!gameActive) {
+    else if (!isSpinning && totalScore > 0) {
+        
         spinWheel.classList.toggle("d-none")
         endGame.classList.toggle("d-none")
         startGame.classList.toggle("d-none")
     
         alert(`Good Job! You take home today ${totalScore} $ :)`)
+        totalScore = 0;
     }
     else {
         alert("You can't end the game while the wheel is running!")
