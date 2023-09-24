@@ -1,124 +1,114 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    position: relative;
-    width: 100vw;
-    
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    padding:  30px;
-   
+body {
+  position: relative;
+  width: 100vw;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
 }
 
-.wheel-container{
-    display: grid;
-    place-items: center;
-    height: 550px;
-    width: 550px;
-    margin-bottom: 70px;
+.wheel-container {
+  display: grid;
+  place-items: center;
+  height: 550px;
+  width: 550px;
+  margin-bottom: 70px;
 }
 
 .wheel-wrapper {
-    position: absolute;
-    
-    height: 550px;
-    width: 550px;
-    border-radius: 50%;
-    border: 5px solid rgb(223, 215, 215);
-    
-    z-index: -1;
-    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
+  position: absolute;
 
+  height: 550px;
+  width: 550px;
+  border-radius: 50%;
+  border: 5px solid rgb(223, 215, 215);
+
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet,
+    red
+  );
 }
 
-
 .wheel {
-    width: 500px;
-    height: 500px;
-    border: 4px solid black;
-    
-    border-radius: 50%;
-    background-image: url(/assets/wheel.png);
-    background-size: cover;
-    z-index: 999999;
-   
-    /* transform: rotate(1000deg);
+  width: 500px;
+  height: 500px;
+  border: 4px solid black;
+
+  border-radius: 50%;
+  background-image: url(/assets/wheel.png);
+  background-size: cover;
+  z-index: 999999;
+
+  /* transform: rotate(1000deg);
     transition: 10s ease-out; */
 }
 
-
 .wraper {
-    margin-top: 70px;
-    
+  margin-top: 70px;
 }
 
 button {
-   
-    font-size: 2rem;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: hsl(180, 100%, 50%);
-    border: none;
+  font-size: 2rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: hsl(180, 100%, 50%);
+  border: none;
 }
 
 button:active {
-    background-color: hsl(180, 70%, 50%);
-   
-   
+  background-color: hsl(180, 70%, 50%);
 }
 
 .spin-wheel {
-
-    display: none;
-
+  display: none;
 }
 
 .end-game {
-    margin-top: 20px;
-    display: none;
-    background-color: aquamarine;
+  margin-top: 20px;
+  display: none;
+  background-color: aquamarine;
 }
-
-
-
 
 .arrow-up {
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 20px solid #f00;
-   
-    margin-top: -60px;
-    margin-bottom: 30px;
-  }
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid #f00;
 
-
-@media (max-width: 900px){
-    .wheel-container {
-        width: 280px;
-        height: 280px;
-    }
-    .wheel-wrapper{
-        width: 280px;
-        height: 280px;
-    }
-    .wheel{
-        width: 250px;
-        height: 250px;
-    }
-   button {
-    font-size: 1rem;
-   }
+  margin-top: -60px;
+  margin-bottom: 30px;
 }
 
-
-
-
-
+@media (max-width: 900px) {
+  .wheel-container {
+    width: 280px;
+    height: 280px;
+  }
+  .wheel-wrapper {
+    width: 280px;
+    height: 280px;
+  }
+  .wheel {
+    width: 250px;
+    height: 250px;
+  }
+  button {
+    font-size: 1rem;
+  }
+}
