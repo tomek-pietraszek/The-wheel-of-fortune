@@ -1,4 +1,4 @@
-# 🎉 Wheel of Fortune Game
+# 🎉 [Wheel of Fortune Game](https://myfortunewheel.netlify.app/)
 
 Welcome to the Wheel of Fortune Game! This project is a simple web-based game where you can spin a 🌈 colorful wheel to win various prizes. In this README.md file, I will walk you through the project, it's features, and any difficulties or problems I've encountered during it's development.
 
